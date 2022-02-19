@@ -1,0 +1,20 @@
+.score-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 200px;
+}
+
+.game-map {
+  background-color: grey;
+  width: 500px;
+  height: 500px;
+  display: grid;
+  align-self: center;
+  grid-template-rows: repeat(21, 1fr);
+  grid-template-columns: repeat(21, 1fr);
+
+  &.blur {
+    filter: blur(4px);
+  }
+}
