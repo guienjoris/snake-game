@@ -1,14 +1,10 @@
-import { Injectable } from '@angular/core';
-
-@Injectable({
-  providedIn: 'root',
-})
 export class InputService {
   inputDirection = { x: 0, y: 0 };
   lastInputDirection = { x: 0, y: 0 };
 
   getInputs() {
     window.addEventListener('keydown', (e) => {
+      console.log(e.key);
       this.setDirection(e.key);
     });
   }

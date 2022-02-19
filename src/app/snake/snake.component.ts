@@ -1,14 +1,9 @@
-import { Component } from '@angular/core';
 import { InputService } from '../input.service';
 
 export const SNAKE_SPEED = 7;
-@Component({
-  selector: 'app-snake',
-  templateUrl: './snake.component.html',
-  styleUrls: ['./snake.component.scss'],
-})
-export class SnakeComponent {
-  constructor(private inputService: InputService) {}
+
+export class Snake {
+  constructor() {}
 
   snakeBody = [
     {
@@ -17,7 +12,7 @@ export class SnakeComponent {
     },
   ];
   newSegments = 0;
-  input = this.inputService;
+  input = new InputService();
 
   listenToInputs() {
     this.input.getInputs();
@@ -32,13 +27,13 @@ export class SnakeComponent {
     this.snakeBody[0].y += inputDirection.y;
   }
 
-  draw(gameBoard: any) {
+  draw(gameMap: any) {
     this.snakeBody.forEach((segment) => {
       const snakeElement = document.createElement('div');
       snakeElement.style.gridRowStart = segment.y.toString();
       snakeElement.style.gridColumnStart = segment.x.toString();
       snakeElement.classList.add('snake');
-      gameBoard.appendChild(snakeElement);
+      gameMap.appendChild(snakeElement);
     });
   }
 
