@@ -11,7 +11,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   constructor() {}
   lastRenderTime = 0;
   gameOver = false;
-  gameMap: any;
+  gameBoard: any;
   SNAKE_SPEED = 1;
   snake = new Snake();
   food = new Food(this.snake);
@@ -20,7 +20,8 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.gameMap = document.querySelector('.game-map');
+    this.gameBoard = document.querySelector('.game-board');
+    window.requestAnimationFrame(this.start.bind(this));
   }
 
   start(currentTime: any) {
@@ -54,16 +55,16 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   draw() {
-    this.gameMap.innerHTML = '';
-    this.snake.draw(this.gameMap);
-    this.food.draw(this.gameMap);
+    this.gameBoard.innerHTML = '';
+    this.snake.draw(this.gameBoard);
+    this.food.draw(this.gameBoard);
   }
 
   checkDeath() {
     this.gameOver =
       outsideGrid(this.snake.getSnakeHead()) || this.snake.snakeIntersection();
     if (!this.gameOver) return;
-    this.gameMap.classList.add('blur');
+    this.gameBoard.classList.add('blur');
   }
 
   restart() {
